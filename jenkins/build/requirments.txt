@@ -1,0 +1,4 @@
+pyftpdlib
+fastapi
+uvicorn
+python-multipart
