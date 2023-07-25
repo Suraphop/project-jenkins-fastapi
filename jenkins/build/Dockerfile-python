@@ -1,8 +1,9 @@
-FROM continuumio/miniconda3
+FROM python:3.9-slim-buster
 
 WORKDIR /app
 
 COPY . .
-RUN conda env create -n env -f environment.yml
+RUN apt-get update
+RUN pip3 install -r requirements.txt
 
-CMD ["conda", "run", "-n", "env", "uvicorn", "main:app", "--host", "0.0.0.0", "--port", "3000"]
+CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "3000"]

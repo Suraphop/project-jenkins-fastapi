@@ -1,8 +1,3 @@
-# %% [markdown]
-# #### FastAPI
-
-# %%
-#!pip install fastapi
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi import File, UploadFile
@@ -30,14 +25,14 @@ def index():
 @app.get("/files")
 def files():
     """return file"""
-    result = [{"name": "test.csv","url":"http://localhost:9090/files/bezkoder.csv"}]
+    result = [{"name": "test.csv","url":"http://localhost:9090/files/test.csv"}]
     return result
 
 @app.post("/upload")
 def upload(files: List[UploadFile] = File(...)):
     for file in files:
         try:
-            project_path = 'ftp_test'
+            project_path = 'talyrond'
             ftp_upload(project_path,file.file)
         except Exception as e:
             return {"message": f"There was an error uploading the file(s),{e}"}

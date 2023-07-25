@@ -4,12 +4,12 @@ echo "********************"
 echo "** Pushing image ***"
 echo "********************"
 
-IMAGE="machine-data-project"
+IMAGE="talyrond-backend-project"
 
 echo "** Logging in ***"
-docker login -u suraphop -p $PASS
+docker login -u devopsmic -p $DOCKER_PASSWORD
 echo "*** Tagging image ***"
-docker tag $IMAGE:$BUILD_TAG suraphop/$IMAGE:$BUILD_TAG
+docker tag $IMAGE:$BUILD_TAG devopsmic/$IMAGE:$BUILD_TAG
 echo "*** Pushing image ***"
-docker push suraphop/$IMAGE:$BUILD_TAG
+docker push devopsmic/$IMAGE:$BUILD_TAG
 docker logout
