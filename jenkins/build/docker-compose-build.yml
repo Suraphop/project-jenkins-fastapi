@@ -1,7 +1,7 @@
 version: '3.3'
 services:
   app:
-    image: "micdevops/talyrond-backend-project:$BUILD_TAG"
+    image: "devopsmic/talyrond-backend-project:$BUILD_TAG"
     build:
       context: .
       dockerfile: Dockerfile-python
