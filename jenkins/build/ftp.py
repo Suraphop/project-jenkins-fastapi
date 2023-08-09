@@ -4,14 +4,17 @@ from datetime import datetime, timedelta
 
 def ftp_upload(project_path,file):
     try:
-        hostname = '10.128.16.210'
-        user = 'admin'
+        # hostname = '10.128.16.210'
+        # user = 'admin'
+        # pwd = '1234'
+
+        hostname = '192.168.100.11'
+        user = 'test'
         pwd = '1234'
 
         now = datetime.now()
         date_file_name = f'{str(now.date())}_{str(now.time()).split(".")[0].replace(":","_")}'
         year,month,date = mfg_date()
-
 
         upload_path = f"/{project_path}/{year}/{month}/{date}/TYLALOND_{date_file_name}.csv"
 
@@ -25,6 +28,7 @@ def ftp_upload(project_path,file):
 
         file.close()                                
         session.quit()
+        
         return {"result":"ok",'code':'-'}
     except Exception as e: 
         return {"result":"error",'code':e}
