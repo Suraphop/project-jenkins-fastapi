@@ -4,13 +4,13 @@ from datetime import datetime, timedelta
 
 def ftp_upload(project_path,file):
     try:
-        # hostname = '10.128.16.210'
-        # user = 'admin'
-        # pwd = '1234'
-
-        hostname = '192.168.100.11'
-        user = 'test'
+        hostname = '10.128.16.210'
+        user = 'admin'
         pwd = '1234'
+
+        #hostname = '192.168.100.11'
+        #user = 'test'
+        #pwd = '1234'
 
         now = datetime.now()
         date_file_name = f'{str(now.date())}_{str(now.time()).split(".")[0].replace(":","_")}'
