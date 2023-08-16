@@ -1,7 +1,7 @@
 version: '3.3'
 services:
   app:
-    image: "devopsmic/nat-talyrond-backend:$BUILD_TAG"
+    image: "devopsmic/nat-talyrond-backend:1.0.0"
     build:
       context: .
       dockerfile: Dockerfile-python
