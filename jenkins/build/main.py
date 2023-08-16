@@ -32,8 +32,8 @@ def files():
 def upload(files: List[UploadFile] = File(...)):
     for file in files:
         try:
-            #project_path = 'talyrond'
-            project_path = 'ftp_test'
+            project_path = 'talyrond'
+            #project_path = 'ftp_test'
             ftp_upload(project_path,file.file)
         except Exception as e:
             return {"message": f"There was an error uploading the file(s),{e}"}
