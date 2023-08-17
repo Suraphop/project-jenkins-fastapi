@@ -1,16 +1,21 @@
 import ftplib
 from datetime import datetime, timedelta
 
+def create_floder(session,path):
+    try:
+        session.cwd(path)
+        print("found a floder")
+    except:
+        session.mkd(path)
+        session.cwd(path)
+        print("create a floder")
+    return
 
 def ftp_upload(project_path,file):
-    try:
+
         hostname = '10.128.16.210'
         user = 'admin'
         pwd = '1234'
-
-        #hostname = '192.168.100.11'
-        #user = 'test'
-        #pwd = '1234'
 
         now = datetime.now()
         date_file_name = f'{str(now.date())}_{str(now.time()).split(".")[0].replace(":","_")}'
@@ -19,19 +24,19 @@ def ftp_upload(project_path,file):
         upload_path = f"/{project_path}/{year}/{month}/{date}/TYLALOND_{date_file_name}.csv"
 
         session = ftplib.FTP(hostname,user,pwd)
+        create_floder(session,project_path)
+        create_floder(session,str(year))
+        create_floder(session,str(month))
+        create_floder(session,str(date))
 
-        session.mkd(f'{project_path}/{year}')
-        session.mkd(f'{project_path}/{year}/{month}')
-        session.mkd(f'{project_path}/{year}/{month}/{date}')
-
-        session.storbinary(f'STOR {upload_path}', file) 
-
-        file.close()                                
+        try:
+            session.storbinary(f'STOR {upload_path}', file)
+        except Exception as e:
+            print(f'info store-->{e}')
+            return {"result":"ng",'code':e}
+        file.close()
         session.quit()
-        
         return {"result":"ok",'code':'-'}
-    except Exception as e: 
-        return {"result":"error",'code':e}
 
 def mfg_date():
     mfg_date = datetime.now() - timedelta(hours=7)
